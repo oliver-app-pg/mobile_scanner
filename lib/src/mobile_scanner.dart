@@ -279,7 +279,9 @@ class _MobileScannerState extends State<MobileScanner>
 
   @override
   void dispose() {
-    _controller.updateScanWindow(null);
+    if (!kIsWeb) {
+      _controller.updateScanWindow(null);
+    }
     WidgetsBinding.instance.removeObserver(this);
     _barcodesSubscription?.cancel();
     _barcodesSubscription = null;
